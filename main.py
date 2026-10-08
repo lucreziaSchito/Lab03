@@ -1,5 +1,6 @@
 from deposito_strumenti import DepositoStrumenti
 from datetime import datetime
+import deposito_strumenti  # importante importare se voglio lavorare con la classe
 
 def menu():
     print("\n--- MENU DEPOSITO STRUMENTI ---")
@@ -21,6 +22,7 @@ def main():
         if scelta == "1":
             nuovo_responsabile = input("Inserisci il nuovo responsabile: ")
             # TODO: Aggiorna responsabile nel sistema
+            deposito_strumenti.responsabile = nuovo_responsabile
 
         elif scelta == "2":
             while True:

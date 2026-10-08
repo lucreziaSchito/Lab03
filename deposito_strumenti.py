@@ -9,6 +9,15 @@ class DepositoStrumenti:
         self.__responsabile = responsabile
         self.DictDeposito = {}
 
+    @property   # GETTER: legge il valore privato
+    def responsabile(self):
+        return self.__responsabile
+    @responsabile.setter  # SETTER: modifica il valore
+    def responsabile(self, nuovo_resp):
+        self.__responsabile = nuovo_resp
+    #eventualmente posso inserire controlli e verifiche
+
+
     def carica_file_strumenti(self, file_path):
         """Carica gli strumenti dal file"""
         # TODO
@@ -35,10 +44,18 @@ class DepositoStrumenti:
             marca = self.DictDeposito[key][1]
             lista_strumento_marche.append((key, marca))
         lista_strumento_marche.sort(key = attrgetter('marca'))
+        return lista_strumento_marche
 
     def nuovo_prestito(self, data, id_strumento, cognome_allievo):
         """Crea un nuovo prestito"""
         # TODO
+        progressivo = 1
+        id_prenotazione = f"P{progressivo}"
+        try :
+            ###
+            pass
+        except Exception:
+            raise Exception("Non è possibile richiedere il prestito")
 
     def termina_prestito(self, id_prestito):
         """Termina un prestito in atto"""
