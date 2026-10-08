@@ -18,4 +18,4 @@ class Strumento :
     #interessano per il salvataggio all'interno del dizionario e per l'ordinamento alfabetico
 
     def __str__(self) :
-        pass
+        return f"{self.__id_strumento}, {self.__tipo_strumento}, {self.__marca}, {self.__anno_acquisto}, {self.__valore}"

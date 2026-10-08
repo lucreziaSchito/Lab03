@@ -10,6 +10,7 @@ class DepositoStrumenti:
         self.__nome = nome
         self.__responsabile = responsabile
         self.DictDeposito = {}
+        self.dict_prestiti = {}
 
     @property   # GETTER: legge il valore privato
     def responsabile(self):
@@ -53,27 +54,24 @@ class DepositoStrumenti:
     def nuovo_prestito(self, data, id_strumento, cognome_allievo):
         """Crea un nuovo prestito"""
         # TODO
-        try :
-            # memorizzo tutti i prestiti in una lista
-            lista_prestiti = []
-            progressivo = len(lista_prestiti) + 1
-            id_prenotazione = f"P{progressivo}"
-            p = Prestito(id_prenotazione, data, id_strumento, cognome_allievo)
-            if id_strumento not in self.DictDeposito :
-                raise Exception("L'ID strumento da lei inserito non è presente all'interno del deposito")
-            elif p in lista_prestiti:
+        progressivo = len(self.dict_prestiti) + 1
+        id_prenotazione = f"P{progressivo}"
+        p = Prestito(id_prenotazione, data, id_strumento, cognome_allievo)
+        if id_strumento not in self.DictDeposito :
+            raise Exception("L'ID strumento da lei inserito non è presente all'interno del deposito")
+        for i in self.dict_prestiti.values(): # sto iterando sui valori dell'i-esimo prestito
+            if i.id_strumento == id_strumento:
                 raise Exception("Strumento attualmente non disponibile, risulta essere già impeganto in un prestito")
-            else :
-                lista_prestiti.append(p)
+        else :
+            self.dict_prestiti[id_prenotazione] = p
+        return p
 
-        except Exception:
-            print("Non è stato possibile accettare la richiesta di prestito")
 
     def termina_prestito(self, id_prestito):
         """Termina un prestito in atto"""
         # TODO
-        try :
-            #if id_prestito in lista_
-            pass
-        except Exception :
-            print("") ###
+        if id_prestito in self.dict_prestiti:
+            self.dict_prestiti.pop(id_prestito)
+        else :
+            raise Exception("Il codice non corrisponde ad alcun prestito esistente")
+

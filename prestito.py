@@ -9,6 +9,9 @@ class Prestito:
     def id_prestito(self):
         return self.__id_prestito
 
+    @property
+    def id_strumento(self):
+        return self.__id_strumento
 
     def __str__(self):
         return f"{self.__id_prestito}, {self.__data}, {self.__id_strumento}, {self.__cognome_allievo}"
