@@ -11,6 +11,7 @@ class DepositoStrumenti:
         self.__responsabile = responsabile
         self.DictDeposito = {}
         self.dict_prestiti = {}
+        self.__contatore = 1
 
     @property   # GETTER: legge il valore privato
     def responsabile(self):
@@ -54,8 +55,7 @@ class DepositoStrumenti:
     def nuovo_prestito(self, data, id_strumento, cognome_allievo):
         """Crea un nuovo prestito"""
         # TODO
-        progressivo = len(self.dict_prestiti) + 1
-        id_prenotazione = f"P{progressivo}"
+        id_prenotazione = f"P{self.__contatore}"
         p = Prestito(id_prenotazione, data, id_strumento, cognome_allievo)
         if id_strumento not in self.DictDeposito :
             raise Exception("L'ID strumento da lei inserito non è presente all'interno del deposito")
@@ -64,6 +64,7 @@ class DepositoStrumenti:
                 raise Exception("Strumento attualmente non disponibile, risulta essere già impeganto in un prestito")
         else :
             self.dict_prestiti[id_prenotazione] = p
+            self.__contatore += 1
         return p
 
 
